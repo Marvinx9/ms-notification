@@ -1,5 +1,5 @@
 import { Controller } from '@nestjs/common';
-import { EventPattern } from '@nestjs/microservices';
+import { MessagePattern } from '@nestjs/microservices';
 import { MailerService } from '@nestjs-modules/mailer';
 
 type NotificationDto = {
@@ -15,7 +15,7 @@ type NotificationDto = {
 export class AppController {
   constructor(private readonly mailerService: MailerService) {}
 
-  @EventPattern('task_notification')
+  @MessagePattern('tp_task_notification')
   async taskNotification(data: NotificationDto) {
     await this.mailerService.sendMail({
       to: data.email,
